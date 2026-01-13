@@ -1,0 +1,99 @@
+1️⃣ Paper-by-Paper Verdict (Must Cite vs Supporting)
+✅ STRONGLY RELEVANT / MUST-CITE (Core 5–6 papers)
+
+These directly support Big Data + Educational Analytics + Student Behavior.
+
+🔹 Paper 4 (2025)
+
+Big Data and Analytics in Education: Leveraging Data to Improve Student Performance
+✔ Directly aligns with educational big data analytics
+✔ Helps justify why learning analytics is needed
+➡️ Must-cite (Problem motivation)
+
+🔹 Paper 5 (2019)
+
+Data Mining and Machine Learning Applications for Educational Big Data in the University
+✔ Core Data Mining concepts
+✔ Strong base for clustering, classification, pattern mining
+➡️ Must-cite (Method foundation)
+
+🔹 Paper 8 (2023)
+
+Research on Educational Big Data Analysis based on Hive and Spark
+✔ Explicit Big Data tools
+✔ Justifies scalability and distributed processing
+➡️ Must-cite (Big Data justification)
+
+🔹 Paper 9 (2023)
+
+Using Big Data and Hadoop in the Student Learning Process
+✔ Talks about learning process data
+✔ Connects data usage with educational outcomes
+➡️ Must-cite (Learning process context)
+
+🔹 Paper 13 (2021)
+
+Big Data Platform for Educational Analytics
+✔ High-level architecture
+✔ Good for system-level discussion
+➡️ Must-cite (System design background)
+
+🔹 Paper 2 (2018)
+
+Integration of Data Mining Clustering Approach in the Personalized E-Learning System
+✔ Strong for clustering student behavior
+✔ Helps contrast personalization vs collapse detection
+➡️ Must-cite (Behavior analysis baseline)
+
+2️⃣ SUPPORTING / BACKGROUND PAPERS (Good but not core)
+
+These strengthen your review but are not central.
+
+🟡 Paper 1 (2025)
+
+Applying Machine Learning on Big Data with Apache Spark
+✔ Tool-oriented
+❌ Not education-specific
+➡️ Use for Big Data ML background
+
+🟡 Paper 3 (2016)
+
+Processing of Big Educational Data using Apache Hadoop
+✔ Early foundational work
+❌ Older, less behavior-focused
+➡️ Cite as historical context
+
+🟡 Paper 6 (2017)
+
+Big Data Machine Learning using Spark MLlib
+✔ Algorithm reference
+❌ Generic
+➡️ Background only
+
+🟡 Paper 7 (2016)
+
+Big Data for Institutional Planning and Decision Support
+✔ Macro-level analytics
+❌ Institution-level, not student-level
+➡️ Use to contrast with your micro-behavior focus
+
+🟡 Paper 10 (2019)
+
+Process Data Mining of Online Wisdom Learning
+✔ Process mining relevance
+❌ Not focused on collapse or early failure
+➡️ Optional citation
+
+🟡 Paper 12 (2017)
+
+Tree-Based ML Techniques for Big Data Analytics using Spark
+✔ Algorithm reference
+❌ Tool-heavy
+➡️ Use only if you discuss classifiers
+
+🟡 Paper 11 (2023)
+
+Multidimensional Big Data Analytics over Clouds
+✔ Advanced analytics
+❌ Too far from education
+➡️ Lowest priority
