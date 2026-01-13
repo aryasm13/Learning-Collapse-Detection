@@ -1,0 +1,14 @@
+# Datasets
+datasets/
+*.csv
+*.arff
+*.zip
+
+# IDE
+.idea/
+.vscode/
+
+# Python cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
