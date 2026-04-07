@@ -4,6 +4,11 @@ import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
+type ActionState =
+  | { ok: false; message: string }
+  | { ok: true; message: string }
+  | null;
+
 function deriveNameFromEmail(email: string) {
   const local = email.split("@")[0] ?? "Student";
   const cleaned = local.replace(/[._-]+/g, " ").trim();
@@ -39,9 +44,9 @@ async function ensureStudentProfile(user: { id: string; email?: string | null })
 }
 
 export async function signInWithEmail(
-  _prevState: { ok: false; message: string } | null,
+  _prevState: ActionState,
   formData: FormData
-) {
+): Promise<ActionState> {
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const next = String(formData.get("next") ?? "/dashboard");
@@ -67,9 +72,9 @@ export async function signInWithEmail(
 }
 
 export async function signUpWithEmail(
-  _prevState: { ok: false; message: string } | null,
+  _prevState: ActionState,
   formData: FormData
-) {
+): Promise<ActionState> {
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const next = String(formData.get("next") ?? "/dashboard");
@@ -141,7 +146,7 @@ export async function signUpWithEmail(
 
   // Confirmation required: don't redirect to a protected area yet.
   return {
-    ok: false as const,
+    ok: true as const,
     message:
       "Check your email to confirm your account, then come back and sign in. (If you're rate-limited, wait a few minutes.)",
   };
