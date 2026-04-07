@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useState } from "react";
+import { submitWeekReflection } from "./actions";
 
 type Props = {
   week: number;
@@ -8,34 +9,7 @@ type Props = {
 
 export default function WeekAssessmentForm({ week }: Props) {
   const [content, setContent] = useState("");
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
-    "idle"
-  );
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!content.trim()) return;
-
-    try {
-      setStatus("submitting");
-      const res = await fetch("/api/weekly-assessment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: "demo-user",
-          week,
-          content,
-        }),
-      });
-      if (!res.ok) throw new Error("Failed");
-      setStatus("success");
-      setContent("");
-    } catch {
-      setStatus("error");
-    } finally {
-      setTimeout(() => setStatus("idle"), 2500);
-    }
-  }
+  const [state, action, pending] = useActionState(submitWeekReflection, null);
 
   return (
     <div className="card flex flex-col">
@@ -47,7 +21,9 @@ export default function WeekAssessmentForm({ week }: Props) {
         time, and where you felt most or least confident.
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-3 flex flex-1 flex-col gap-3">
+      <form action={action} className="mt-3 flex flex-1 flex-col gap-3">
+        <input type="hidden" name="week" value={week} />
+        <input type="hidden" name="content" value={content} />
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
@@ -58,26 +34,27 @@ export default function WeekAssessmentForm({ week }: Props) {
 
         <div className="flex items-center justify-between gap-3 text-xs">
           <p className="text-slate-400">
-            A mock score will be generated to simulate grading impact.
+            Saved reflections affect your workload model and behavior insights.
           </p>
           <button
             type="submit"
-            disabled={status === "submitting" || !content.trim()}
+            disabled={pending || !content.trim()}
             className="inline-flex items-center rounded-xl bg-gradient-to-r from-emerald-400 to-sky-400 px-4 py-1.5 font-semibold text-slate-950 shadow-md shadow-emerald-500/30 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {status === "submitting" ? "Submitting..." : "Submit reflection"}
+            {pending ? "Submitting..." : "Submit reflection"}
           </button>
         </div>
       </form>
 
-      {status === "success" && (
+      {state?.ok && (
         <p className="mt-2 text-[11px] text-emerald-300">
-          Reflection saved. A mock grade will appear in analytics once data accumulates.
+          Reflection saved. Workload index:{" "}
+          <span className="font-semibold">{state.workload_index}%</span>.
         </p>
       )}
-      {status === "error" && (
+      {state && !state.ok && (
         <p className="mt-2 text-[11px] text-rose-300">
-          Something went wrong while saving your reflection.
+          {state.message}
         </p>
       )}
     </div>

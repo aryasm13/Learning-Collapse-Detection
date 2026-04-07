@@ -7,11 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "db:bootstrap": "node ./scripts/bootstrap-db.mjs",
+    "verify": "npm run lint && npm run build",
     "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.0",
+    "@supabase/ssr": "^0.10.0",
+    "@supabase/supabase-js": "^2.38.5",
     "next": "16.1.6",
     "pg": "^8.20.0",
     "prisma": "^7.4.0",
