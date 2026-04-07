@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Props = {
   videoId: string;
@@ -13,30 +13,61 @@ export function TrackedVideoPlayer({ videoId, title }: Props) {
   const [watchTime, setWatchTime] = useState(0);
   const [sending, setSending] = useState(false);
 
-  const userId = "demo-user";
-
-  async function sendEvent(
-    eventType: string,
-    extra?: { progress?: number; watchTimeDelta?: number }
-  ) {
-    try {
-      setSending(true);
-      await fetch("/api/clickstream", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId,
-          videoId,
-          eventType,
-          ...extra,
-        }),
-      });
-    } catch {
-      // swallow in demo
-    } finally {
-      setSending(false);
-    }
+  function getStudentId(): string | null {
+    if (typeof window === "undefined") return null;
+    return (
+      window.localStorage.getItem("id_student") ||
+      window.localStorage.getItem("student_id") ||
+      null
+    );
   }
+
+  function getSessionId(): string {
+    const KEY = "clickstream_session_id";
+    if (typeof window === "undefined") return "server-session";
+    let sid = window.localStorage.getItem(KEY);
+    if (!sid) {
+      sid = crypto.randomUUID();
+      window.localStorage.setItem(KEY, sid);
+    }
+    return sid;
+  }
+
+  const sendEvent = useCallback(
+    async (
+      eventType: string,
+      extra?: { progress?: number; watchTimeDelta?: number }
+    ) => {
+      try {
+        setSending(true);
+        await fetch("/api/clickstream", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            events: [
+              {
+                idStudent: getStudentId(),
+                eventType: `video_${eventType}`,
+                elementId: videoId,
+                elementText: title,
+                pageURL: typeof window !== "undefined" ? window.location.href : "/",
+                sessionId: getSessionId(),
+                userAgent:
+                  typeof navigator !== "undefined" ? navigator.userAgent : "unknown",
+                timestamp: new Date().toISOString(),
+                ...extra,
+              },
+            ],
+          }),
+        });
+      } catch {
+        // swallow in demo
+      } finally {
+        setSending(false);
+      }
+    },
+    [title, videoId]
+  );
 
   useEffect(() => {
     const video = videoRef.current;
@@ -94,7 +125,7 @@ export function TrackedVideoPlayer({ videoId, title }: Props) {
       video.removeEventListener("timeupdate", handleTimeUpdate);
       video.removeEventListener("ended", handleEnded);
     };
-  }, [lastTime, videoId]);
+  }, [lastTime, sendEvent, videoId]);
 
   const watchMinutes = Math.floor(watchTime / 60);
   const watchSeconds = Math.floor(watchTime % 60)

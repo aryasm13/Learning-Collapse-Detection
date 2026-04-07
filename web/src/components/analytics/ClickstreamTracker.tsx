@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 type ClickEvent = {
+  idStudent?: string | null;
   eventType: string;
   elementId?: string | null;
   elementText?: string | null;
@@ -22,6 +23,15 @@ export function ClickstreamTracker() {
   const lastFlushRef = useRef<number>(Date.now());
   const flushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
+
+  function getStudentId(): string | null {
+    if (typeof window === "undefined") return null;
+    return (
+      window.localStorage.getItem("id_student") ||
+      window.localStorage.getItem("student_id") ||
+      null
+    );
+  }
 
   function getSessionId(): string {
     const KEY = "clickstream_session_id";
@@ -44,12 +54,15 @@ export function ClickstreamTracker() {
     if (target) {
       const text =
         ("innerText" in target && (target as HTMLElement).innerText) ||
-        ("value" in (target as any) && (target as any).value) ||
+        (target instanceof HTMLInputElement && target.value) ||
+        (target instanceof HTMLTextAreaElement && target.value) ||
+        (target instanceof HTMLSelectElement && target.value) ||
         "";
       elementText = text.toString().trim().slice(0, 255) || null;
     }
 
     return {
+      idStudent: getStudentId(),
       eventType,
       elementId,
       elementText,

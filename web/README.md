@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Academic Workload Simulator (Production-style App Router)
 
-## Getting Started
+This app is a behavior-driven learning simulation platform (not a static LMS demo).
+It includes:
 
-First, run the development server:
+- Supabase Auth (email/password)
+- Protected routes with cookie-backed session persistence
+- Relational simulation model (`students`, `courses`, `modules`, `assessments`, `questions`, `attempts`)
+- Behavioral engine (`exam_sessions`, `behavior_metrics`)
+- Dynamic dashboards from real student activity
+
+## Environment Variables
+
+Create `web/.env.local` with:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+DATABASE_URL=postgres://...
+SUPABASE_URL=https://<project>.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=<service-role-key>
+NEXT_PUBLIC_SUPABASE_URL=https://<project>.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon-key>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database Bootstrap
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Apply schema to Postgres/Supabase:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run db:bootstrap
+```
 
-## Learn More
+This executes `supabase/schema.sql`.
 
-To learn more about Next.js, take a look at the following resources:
+Course/assessment seed data is auto-created at runtime when the dashboard layout loads
+and `courses` is empty.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Run Locally
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Verification
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Full code verification:
+
+```bash
+npm run verify
+```
+
+Manual smoke test checklist:
+
+1. Sign up with a new email at `/login`
+2. Confirm redirect to `/dashboard`
+3. Open `/course` and confirm dynamic courses/modules appear
+4. Start an assessment at `/assessments`
+5. Submit within timer and verify score + attempt history
+6. Run `/exam` session, click around, blur tab once, end session
+7. Return to `/dashboard` and verify behavior insights update
+
+## Notes
+
+- Deprecated demo endpoints still exist for compatibility but now return `410`.
+- If Next warns about multiple lockfiles, keep one canonical lockfile per workspace.
