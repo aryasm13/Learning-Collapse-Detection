@@ -1,0 +1,429 @@
+Script started on 2026-04-10 16:22:48+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="82" LINES="43"]
+?2004h0;arya_mulay@DARE-TO-DEVIL: ~01;32marya_mulay@DARE-TO-DEVIL00m:01;34m~00m$ start-dfs.sh
+jpStarting namenodes on [localhost]
+Starting datanodes
+Starting secondary namenodes [DARE-TO-DEVIL]
+?2004h0;arya_mulay@DARE-TO-DEVIL: ~01;32marya_mulay@DARE-TO-DEVIL00m:01;34m~00m$ jps
+11254SecondaryNameNode
+741 NameNode
+872 DataNode
+1291 Jps
+?2004h0;arya_mulay@DARE-TO-DEVIL: ~01;32marya_mulay@DARE-TO-DEVIL00m:01;34m~00m$
+0;arya_mulay@DARE-TO-DEVIL:D~01;32marya_mulay@DARE-TO-DEVIL00m:01;34m~00m$mcp0"/mnt/c/Users/ARYAeMULAY/OneDrive/Desktop/projects/big_data_project/LearningaCollapse/Detection/datasets/test/clickstream_data_rows.csv"e~/_data_rows.c27m7ms27m7mv" ~/27mAA
+?2004h0;arya_mulay@DARE-TO-DEVIL: ~01;32marya_mulay@DARE-TO-DEVIL00m:01;34m~00m$ ls K~
+0m01;31mapache-hive-3.1.3-bin.tar.gz0m	final_test_demo.txt    01;34mhive0m
+01;32mclickstream_data_rows.csv0m     01;34mhadoop0m		     01;34mmetastore_db0m
+collapse_analysis.csv	      01;31mhadoop-3.3.6.tar.gz0m    01;34moulad0m
+collapse_results.csv	      hadoop-3.3.6.tar.gz.1  01;34moulad_hdfs0m
+derby.log		      01;34mhadoopdata0m
+?2004h0;arya_mulay@DARE-TO-DEVIL: ~01;32marya_mulay@DARE-TO-DEVIL00m:01;34m~00m$ 7mhdfs dfs -mkdir /clickstream27m
+7mhdfs dfs -put ~/clickstream_datahdfssdfsv-mkdirk/clickstream
+KKACCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+0;arya_mulay@DARE-TO-DEVIL:D~01;32marya_mulay@DARE-TO-DEVIL00m:01;34m~00m$mhdfs$dfsh-puth~/clickstream_data_rows.csvm/clickstream/ ~/clickstream_data_rows.csv /clickstream27m7m/27mA
+KACCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK-putd~/clickstream_data_rows.csvr/clickstreamckstream27m7m/27mA
+KACCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCK7mhdfhdfssdfss-lsl/clickstream
+Foundl1 items
+-rw-r--r--   1 arya_mulay supergroup	   6107 2026-04-10 16:25 /clickstream/clickstream_data_rows.csv
+0;arya_mulay@DARE-TO-DEVIL: ~01;32marya_mulay@DARE-TO-DEVIL00m:01;34m~00m$ export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+pyspark
+Python 3.12.3 (main, Jan 22 2026, 20:57:42) [GCC 13.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/04/10 16:52:11 WARN Utils: Your hostname, DARE-TO-DEVIL, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/04/10 16:52:11 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/04/10 16:52:13 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Welcome to
+      ____		__
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/	 '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 4.1.1
+      /_/
+
+Using Python version 3.12.3 (main, Jan 22 2026 20:57:42)
+Spark context Web UI available at http://10.255.255.254:4040
+Spark context available as 'sc' (master = local[*], app id = local-1775839935266).
+SparkSession available as 'spark'.
+>>> pysparKdf = spark.read.csv(
+/localhost:9000/...	"hdfs://localhost:9000/clickstream/clickstream_data_rows.csv",
+...	header=True,
+...	inferSchema=True
+... )
+>>>adf.show(5)							    (0 + 1) / 1]
++--------------------+--------------------+----+---------+
+|	   id_student|		   id_site|date|sum_click|
++--------------------+--------------------+----+---------+
+|23f18d22-3bd2-488...|	       assessments|   1|	2|
+|23f18d22-3bd2-488...|assessments_91064...|   1|       34|
+|23f18d22-3bd2-488...|		    course|   1|	6|
+|23f18d22-3bd2-488...|		 dashboard|   1|	9|
+|23f18d22-3bd2-488...|		      exam|   1|	2|
++--------------------+--------------------+----+---------+
+only showing top 5 rows
+>>> df.show()
++--------------------+--------------------+----+---------+
+|	   id_student|		   id_site|date|sum_click|
++--------------------+--------------------+----+---------+
+|23f18d22-3bd2-488...|	       assessments|   1|	2|
+|23f18d22-3bd2-488...|assessments_91064...|   1|       34|
+|23f18d22-3bd2-488...|		    course|   1|	6|
+|23f18d22-3bd2-488...|		 dashboard|   1|	9|
+|23f18d22-3bd2-488...|		      exam|   1|	2|
+|23f18d22-3bd2-488...|		      home|   1|	2|
+|23f18d22-3bd2-488...|		     login|   1|       17|
+|2f4327d3-cf9d-408...|assessments_00391...|   1|       13|
+|2f4327d3-cf9d-408...|assessments_91064...|   1|       10|
+|2f4327d3-cf9d-408...|		    course|   1|       11|
+|2f4327d3-cf9d-408...|		 dashboard|   1|	1|
+|2f4327d3-cf9d-408...|		     login|   1|	1|
+|62d4fd0e-ab93-4b2...|		 dashboard|   1|	5|
+|62d4fd0e-ab93-4b2...|		      home|   1|	2|
+|62d4fd0e-ab93-4b2...|		     login|   1|	4|
+|697394ad-3f76-490...|	       assessments|   1|       11|
+|697394ad-3f76-490...|assessments_91064...|   1|       10|
+|697394ad-3f76-490...|		    course|   1|	6|
+|697394ad-3f76-490...|		 dashboard|   1|       12|
+|697394ad-3f76-490...|		      exam|   1|       13|
++--------------------+--------------------+----+---------+
+only showing top 20 rows
+>>> df.show(200)
++--------------------+--------------------+----+---------+
+|	   id_student|		   id_site|date|sum_click|
++--------------------+--------------------+----+---------+
+|23f18d22-3bd2-488...|	       assessments|   1|	2|
+|23f18d22-3bd2-488...|assessments_91064...|   1|       34|
+|23f18d22-3bd2-488...|		    course|   1|	6|
+|23f18d22-3bd2-488...|		 dashboard|   1|	9|
+|23f18d22-3bd2-488...|		      exam|   1|	2|
+|23f18d22-3bd2-488...|		      home|   1|	2|
+|23f18d22-3bd2-488...|		     login|   1|       17|
+|2f4327d3-cf9d-408...|assessments_00391...|   1|       13|
+|2f4327d3-cf9d-408...|assessments_91064...|   1|       10|
+|2f4327d3-cf9d-408...|		    course|   1|       11|
+|2f4327d3-cf9d-408...|		 dashboard|   1|	1|
+|2f4327d3-cf9d-408...|		     login|   1|	1|
+|62d4fd0e-ab93-4b2...|		 dashboard|   1|	5|
+|62d4fd0e-ab93-4b2...|		      home|   1|	2|
+|62d4fd0e-ab93-4b2...|		     login|   1|	4|
+|697394ad-3f76-490...|	       assessments|   1|       11|
+|697394ad-3f76-490...|assessments_91064...|   1|       10|
+|697394ad-3f76-490...|		    course|   1|	6|
+|697394ad-3f76-490...|		 dashboard|   1|       12|
+|697394ad-3f76-490...|		      exam|   1|       13|
+|697394ad-3f76-490...|		     login|   1|	1|
+|6fe3dc55-b1d5-4c8...|assessments_91064...|   1|       12|
+|6fe3dc55-b1d5-4c8...|		    course|   1|	8|
+|6fe3dc55-b1d5-4c8...|		 dashboard|   1|	1|
+|6fe3dc55-b1d5-4c8...|		     login|   1|	1|
+|6fe3dc55-b1d5-4c8...|		      week|   1|	9|
+|75ae17af-97e6-48e...|	       assessments|   1|	4|
+|75ae17af-97e6-48e...|assessments_91064...|   1|	9|
+|75ae17af-97e6-48e...|		    course|   1|	6|
+|75ae17af-97e6-48e...|		 dashboard|   1|	7|
+|75ae17af-97e6-48e...|		      exam|   1|	7|
+|75ae17af-97e6-48e...|		      home|   1|	4|
+|75ae17af-97e6-48e...|		     login|   1|	4|
+|75ae17af-97e6-48e...|		      week|   1|	2|
+|78b0353a-c989-447...|	       assessments|   1|	3|
+|78b0353a-c989-447...|		    course|   1|	4|
+|78b0353a-c989-447...|		 dashboard|   1|	3|
+|78b0353a-c989-447...|		      week|   1|	1|
+|7b43790a-6efa-4a0...|	       assessments|   1|	4|
+|7b43790a-6efa-4a0...|assessments_91064...|   1|	9|
+|7b43790a-6efa-4a0...|		    course|   1|	4|
+|7b43790a-6efa-4a0...|		 dashboard|   1|	4|
+|7b43790a-6efa-4a0...|		      exam|   1|	4|
+|7d5aaad6-7b09-43c...|	       assessments|   1|	6|
+|7d5aaad6-7b09-43c...|assessments_00391...|   1|	9|
+|7d5aaad6-7b09-43c...|assessments_2e444...|   1|       11|
+|7d5aaad6-7b09-43c...|assessments_91064...|   1|       11|
+|7d5aaad6-7b09-43c...|assessments_c141c...|   1|	1|
+|7d5aaad6-7b09-43c...|		    course|   1|       11|
+|7d5aaad6-7b09-43c...|		 dashboard|   1|	4|
+|7d5aaad6-7b09-43c...|		      exam|   1|       24|
+|8229c005-8752-4e5...|	       assessments|   1|	2|
+|8229c005-8752-4e5...|assessments_2e444...|   1|	9|
+|8229c005-8752-4e5...|assessments_91064...|   1|      825|
+|8229c005-8752-4e5...|		    course|   1|	6|
+|8229c005-8752-4e5...|		 dashboard|   1|	3|
+|8229c005-8752-4e5...|		      exam|   1|	2|
+|8229c005-8752-4e5...|		     login|   1|	2|
+|8fc1b351-9614-4a4...|	       assessments|   1|       10|
+|8fc1b351-9614-4a4...|assessments_00391...|   1|       11|
+|8fc1b351-9614-4a4...|assessments_2e444...|   1|	9|
+|8fc1b351-9614-4a4...|assessments_91064...|   1|	9|
+|8fc1b351-9614-4a4...|assessments_c141c...|   1|	9|
+|8fc1b351-9614-4a4...|		    course|   1|       20|
+|8fc1b351-9614-4a4...|		 dashboard|   1|       10|
+|8fc1b351-9614-4a4...|		      exam|   1|	9|
+|8fc1b351-9614-4a4...|		      home|   1|	2|
+|8fc1b351-9614-4a4...|		     login|   1|	8|
+|8fc1b351-9614-4a4...|		      week|   1|	2|
+|a134d98d-d1fd-4d8...|assessments_00391...|   1|	8|
+|a134d98d-d1fd-4d8...|assessments_2e444...|   1|	8|
+|a134d98d-d1fd-4d8...|assessments_91064...|   1|	9|
+|a134d98d-d1fd-4d8...|assessments_c141c...|   1|	8|
+|a134d98d-d1fd-4d8...|		    course|   1|       14|
+|a134d98d-d1fd-4d8...|		 dashboard|   1|	1|
+|a134d98d-d1fd-4d8...|		      week|   1|	4|
+|a5ca9730-27c1-47b...|	       assessments|   1|	2|
+|a5ca9730-27c1-47b...|assessments_91064...|   1|	9|
+|a5ca9730-27c1-47b...|assessments_c141c...|   1|	9|
+|a5ca9730-27c1-47b...|		    course|   1|	2|
+|a5ca9730-27c1-47b...|		 dashboard|   1|	4|
+|a5ca9730-27c1-47b...|		      exam|   1|       10|
+|d1848ddf-2d89-443...|		    course|   1|	3|
+|d1848ddf-2d89-443...|		 dashboard|   1|	2|
+|d1848ddf-2d89-443...|		      home|   1|	2|
+|d1848ddf-2d89-443...|		     login|   1|	7|
+|d74a85bf-a23e-4c5...|assessments_91064...|   1|	1|
+|d74a85bf-a23e-4c5...|		    course|   1|	2|
+|d74a85bf-a23e-4c5...|		 dashboard|   1|	1|
+|db562bf4-3643-48a...|	       assessments|   1|	3|
+|db562bf4-3643-48a...|		    course|   1|	6|
+|db562bf4-3643-48a...|		 dashboard|   1|       11|
+|db562bf4-3643-48a...|		     login|   1|	9|
+|df14f4a7-f8a1-4a9...|	       assessments|   1|	3|
+|df14f4a7-f8a1-4a9...|assessments_91064...|   1|	9|
+|df14f4a7-f8a1-4a9...|		    course|   1|	5|
+|df14f4a7-f8a1-4a9...|		 dashboard|   1|	6|
+|df14f4a7-f8a1-4a9...|		     login|   1|	2|
+|df2a586b-ed41-419...|assessments_91064...|   1|	4|
+|df2a586b-ed41-419...|		    course|   1|	7|
++--------------------+--------------------+----+---------+
+
+>>> df.printSchema()
+root
+ |-- id_student: string (nullable = true)
+ |-- id_site: string (nullable = true)
+ |-- date: integer (nullable = true)
+ |-- sum_click: integer (nullable = true)
+
+
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCcount("id_site").alias("total_events"),,count1Pistinct("date").alias("active_days"),
+...	stddev("sum_click").alias("activity_variance")
+... )
+>>>
+>>> dKfeatures.show()
++--------------------+------------+-----------+------------+------------------+
+|	   id_student|total_clicks|active_days|total_events| activity_variance|
++--------------------+------------+-----------+------------+------------------+
+|62d4fd0e-ab93-4b2...|		11|	     1|		  3|1.5275252316519468|
+|7b43790a-6efa-4a0...|		25|	     1|		  5|  2.23606797749979|
+|d74a85bf-a23e-4c5...|		 4|	     1|		  3|0.5773502691896258|
+|75ae17af-97e6-48e...|		43|	     1|		  8| 2.263846284534354|
+|df14f4a7-f8a1-4a9...|		25|	     1|		  5|2.7386127875258306|
+|8229c005-8752-4e5...|	       849|	     1|		  7| 310.3201112215762|
+|7d5aaad6-7b09-43c...|		77|	     1|		  8|6.8855438627398415|
+|a5ca9730-27c1-47b...|		36|	     1|		  6|3.7416573867739413|
+|df2a586b-ed41-419...|		11|	     1|		  2|2.1213203435596424|
+|8fc1b351-9614-4a4...|		99|	     1|		 11| 4.753945729601885|
+|2f4327d3-cf9d-408...|		36|	     1|		  5| 5.761944116355173|
+|6fe3dc55-b1d5-4c8...|		31|	     1|		  5| 4.969909455915671|
+|a134d98d-d1fd-4d8...|		52|	     1|		  7|  4.07664661444276|
+|23f18d22-3bd2-488...|		72|	     1|		  7|11.785786435565592|
+|697394ad-3f76-490...|		53|	     1|		  6| 4.535048695071164|
+|d1848ddf-2d89-443...|		14|	     1|		  4| 2.380476142847616|
+|78b0353a-c989-447...|		11|	     1|		  4|1.2583057392117918|
+|db562bf4-3643-48a...|		29|	     1|		  4|3.5000000000000004|
++--------------------+------------+-----------+------------+------------------+
+
+>>> features.show(20)
++--------------------+------------+-----------+------------+------------------+
+|	   id_student|total_clicks|active_days|total_events| activity_variance|
++--------------------+------------+-----------+------------+------------------+
+|62d4fd0e-ab93-4b2...|		11|	     1|		  3|1.5275252316519468|
+|7b43790a-6efa-4a0...|		25|	     1|		  5|  2.23606797749979|
+|d74a85bf-a23e-4c5...|		 4|	     1|		  3|0.5773502691896258|
+|75ae17af-97e6-48e...|		43|	     1|		  8| 2.263846284534354|
+|df14f4a7-f8a1-4a9...|		25|	     1|		  5|2.7386127875258306|
+|8229c005-8752-4e5...|	       849|	     1|		  7| 310.3201112215762|
+|7d5aaad6-7b09-43c...|		77|	     1|		  8|6.8855438627398415|
+|a5ca9730-27c1-47b...|		36|	     1|		  6|3.7416573867739413|
+|df2a586b-ed41-419...|		11|	     1|		  2|2.1213203435596424|
+|8fc1b351-9614-4a4...|		99|	     1|		 11| 4.753945729601885|
+|2f4327d3-cf9d-408...|		36|	     1|		  5| 5.761944116355173|
+|6fe3dc55-b1d5-4c8...|		31|	     1|		  5| 4.969909455915671|
+|a134d98d-d1fd-4d8...|		52|	     1|		  7|  4.07664661444276|
+|23f18d22-3bd2-488...|		72|	     1|		  7|11.785786435565592|
+|697394ad-3f76-490...|		53|	     1|		  6| 4.535048695071164|
+|d1848ddf-2d89-443...|		14|	     1|		  4| 2.380476142847616|
+|78b0353a-c989-447...|		11|	     1|		  4|1.2583057392117918|
+|db562bf4-3643-48a...|		29|	     1|		  4|3.5000000000000004|
++--------------------+------------+-----------+------------+------------------+
+
+>>> features.show(2C0)
++--------------------+------------+-----------+------------+------------------+
+|	   id_student|total_clicks|active_days|total_events| activity_variance|
++--------------------+------------+-----------+------------+------------------+
+|62d4fd0e-ab93-4b2...|		11|	     1|		  3|1.5275252316519468|
+|7b43790a-6efa-4a0...|		25|	     1|		  5|  2.23606797749979|
+|d74a85bf-a23e-4c5...|		 4|	     1|		  3|0.5773502691896258|
+|75ae17af-97e6-48e...|		43|	     1|		  8| 2.263846284534354|
+|df14f4a7-f8a1-4a9...|		25|	     1|		  5|2.7386127875258306|
+|8229c005-8752-4e5...|	       849|	     1|		  7| 310.3201112215762|
+|7d5aaad6-7b09-43c...|		77|	     1|		  8|6.8855438627398415|
+|a5ca9730-27c1-47b...|		36|	     1|		  6|3.7416573867739413|
+|df2a586b-ed41-419...|		11|	     1|		  2|2.1213203435596424|
+|8fc1b351-9614-4a4...|		99|	     1|		 11| 4.753945729601885|
+|2f4327d3-cf9d-408...|		36|	     1|		  5| 5.761944116355173|
+|6fe3dc55-b1d5-4c8...|		31|	     1|		  5| 4.969909455915671|
+|a134d98d-d1fd-4d8...|		52|	     1|		  7|  4.07664661444276|
+|23f18d22-3bd2-488...|		72|	     1|		  7|11.785786435565592|
+|697394ad-3f76-490...|		53|	     1|		  6| 4.535048695071164|
+|d1848ddf-2d89-443...|		14|	     1|		  4| 2.380476142847616|
+|78b0353a-c989-447...|		11|	     1|		  4|1.2583057392117918|
+|db562bf4-3643-48a...|		29|	     1|		  4|3.5000000000000004|
++--------------------+------------+-----------+------------+------------------+
+
+>>> features = features.fillna(0)
+>>> features = features.fillna(0Kfrom pyspark.ml.feature import VectorAssembler
+assembler = VectorAssembler(
+    inputCols=["total_clicks","active_days","activity_variance"],
+    outputCol="features"
+)
+
+data = assembler.transform(features)>>>
+>>> assembler = VectorAssembler(
+...	inputCols=["total_clicks","active_days","activity_variance"],
+...	outputCol="features"
+... )
+>>>
+>>> data = assembler.transform(features)
+>>>
+>>> from pyspark.ml.clustering import KMeans
+ = KMeans(k=3)>>>
+>>> kmeans = KMeans(k=3)
+>>> model = kmeans.fit(data)
+>>> predictions = model.transform(data)
+>>> predictions = model.transform(dataKpredictions.select("id_student","prediction").show(100)
++--------------------+----------+
+|	   id_student|prediction|
++--------------------+----------+
+|62d4fd0e-ab93-4b2...|	       2|
+|7b43790a-6efa-4a0...|	       2|
+|d74a85bf-a23e-4c5...|	       2|
+|75ae17af-97e6-48e...|	       2|
+|df14f4a7-f8a1-4a9...|	       2|
+|8229c005-8752-4e5...|	       1|
+|7d5aaad6-7b09-43c...|	       0|
+|a5ca9730-27c1-47b...|	       2|
+|df2a586b-ed41-419...|	       2|
+|8fc1b351-9614-4a4...|	       0|
+|2f4327d3-cf9d-408...|	       2|
+|6fe3dc55-b1d5-4c8...|	       2|
+|a134d98d-d1fd-4d8...|	       0|
+|23f18d22-3bd2-488...|	       0|
+|697394ad-3f76-490...|	       0|
+|d1848ddf-2d89-443...|	       2|
+|78b0353a-c989-447...|	       2|
+|db562bf4-3643-48a...|	       2|
++--------------------+----------+
+
+>>> predictions.show()
++--------------------+------------+-----------+------------+------------------+--------------------+----------+
+|	   id_student|total_clicks|active_days|total_events| activity_variance|		   features|prediction|
++--------------------+------------+-----------+------------+------------------+--------------------+----------+
+|62d4fd0e-ab93-4b2...|		11|	     1|		  3|1.5275252316519468|[11.0,1.0,1.52752...|	     2|
+|7b43790a-6efa-4a0...|		25|	     1|		  5|  2.23606797749979|[25.0,1.0,2.23606...|	     2|
+|d74a85bf-a23e-4c5...|		 4|	     1|		  3|0.5773502691896258|[4.0,1.0,0.577350...|	     2|
+|75ae17af-97e6-48e...|		43|	     1|		  8| 2.263846284534354|[43.0,1.0,2.26384...|	     2|
+|df14f4a7-f8a1-4a9...|		25|	     1|		  5|2.7386127875258306|[25.0,1.0,2.73861...|	     2|
+|8229c005-8752-4e5...|	       849|	     1|		  7| 310.3201112215762|[849.0,1.0,310.32...|	     1|
+|7d5aaad6-7b09-43c...|		77|	     1|		  8|6.8855438627398415|[77.0,1.0,6.88554...|	     0|
+|a5ca9730-27c1-47b...|		36|	     1|		  6|3.7416573867739413|[36.0,1.0,3.74165...|	     2|
+|df2a586b-ed41-419...|		11|	     1|		  2|2.1213203435596424|[11.0,1.0,2.12132...|	     2|
+|8fc1b351-9614-4a4...|		99|	     1|		 11| 4.753945729601885|[99.0,1.0,4.75394...|	     0|
+|2f4327d3-cf9d-408...|		36|	     1|		  5| 5.761944116355173|[36.0,1.0,5.76194...|	     2|
+|6fe3dc55-b1d5-4c8...|		31|	     1|		  5| 4.969909455915671|[31.0,1.0,4.96990...|	     2|
+|a134d98d-d1fd-4d8...|		52|	     1|		  7|  4.07664661444276|[52.0,1.0,4.07664...|	     0|
+|23f18d22-3bd2-488...|		72|	     1|		  7|11.785786435565592|[72.0,1.0,11.7857...|	     0|
+|697394ad-3f76-490...|		53|	     1|		  6| 4.535048695071164|[53.0,1.0,4.53504...|	     0|
+|d1848ddf-2d89-443...|		14|	     1|		  4| 2.380476142847616|[14.0,1.0,2.38047...|	     2|
+|78b0353a-c989-447...|		11|	     1|		  4|1.2583057392117918|[11.0,1.0,1.25830...|	     2|
+|db562bf4-3643-48a...|		29|	     1|		  4|3.5000000000000004|[29.0,1.0,3.50000...|	     2|
++--------------------+------------+-----------+------------+------------------+--------------------+----------+
+
+>>> predictions.select("id_student","prediction").show(10)
++--------------------+----------+
+|	   id_student|prediction|
++--------------------+----------+
+|62d4fd0e-ab93-4b2...|	       2|
+|7b43790a-6efa-4a0...|	       2|
+|d74a85bf-a23e-4c5...|	       2|
+|75ae17af-97e6-48e...|	       2|
+|df14f4a7-f8a1-4a9...|	       2|
+|8229c005-8752-4e5...|	       1|
+|7d5aaad6-7b09-43c...|	       0|
+|a5ca9730-27c1-47b...|	       2|
+|df2a586b-ed41-419...|	       2|
+|8fc1b351-9614-4a4...|	       0|
++--------------------+----------+
+only showing top 10 rows
+>>> predictions.select("id_student","prediction").show(111P20)
++--------------------+----------+
+|	   id_student|prediction|
++--------------------+----------+
+|62d4fd0e-ab93-4b2...|	       2|
+|7b43790a-6efa-4a0...|	       2|
+|d74a85bf-a23e-4c5...|	       2|
+|75ae17af-97e6-48e...|	       2|
+|df14f4a7-f8a1-4a9...|	       2|
+|8229c005-8752-4e5...|	       1|
+|7d5aaad6-7b09-43c...|	       0|
+|a5ca9730-27c1-47b...|	       2|
+|df2a586b-ed41-419...|	       2|
+|8fc1b351-9614-4a4...|	       0|
+|2f4327d3-cf9d-408...|	       2|
+|6fe3dc55-b1d5-4c8...|	       2|
+|a134d98d-d1fd-4d8...|	       0|
+|23f18d22-3bd2-488...|	       0|
+|697394ad-3f76-490...|	       0|
+|d1848ddf-2d89-443...|	       2|
+|78b0353a-c989-447...|	       2|
+|db562bf4-3643-48a...|	       2|
++--------------------+----------+
+
+>>> predictions.write.mode("overwrite").option("header", True).csv("hdfs://localhost:9000/final_out24Pselect("id_student","prediction").show(20)
+CCCCCCCCCCCCCCCCwrite.mode("overwrite").option("header",2True).csv("hdfs://localhost:9000/final_out24Pselect("id_student","prediction").show(20)
+KACCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCfeaturesC,"prediction").show(20)
++--------------------+--------------------+----------+
+|	   id_student|		  features|prediction|
++--------------------+--------------------+----------+
+|62d4fd0e-ab93-4b2...|[11.0,1.0,1.52752...|	    2|
+|7b43790a-6efa-4a0...|[25.0,1.0,2.23606...|	    2|
+|d74a85bf-a23e-4c5...|[4.0,1.0,0.577350...|	    2|
+|75ae17af-97e6-48e...|[43.0,1.0,2.26384...|	    2|
+|df14f4a7-f8a1-4a9...|[25.0,1.0,2.73861...|	    2|
+|8229c005-8752-4e5...|[849.0,1.0,310.32...|	    1|
+|7d5aaad6-7b09-43c...|[77.0,1.0,6.88554...|	    0|
+|a5ca9730-27c1-47b...|[36.0,1.0,3.74165...|	    2|
+|df2a586b-ed41-419...|[11.0,1.0,2.12132...|	    2|
+|8fc1b351-9614-4a4...|[99.0,1.0,4.75394...|	    0|
+|2f4327d3-cf9d-408...|[36.0,1.0,5.76194...|	    2|
+|6fe3dc55-b1d5-4c8...|[31.0,1.0,4.96990...|	    2|
+|a134d98d-d1fd-4d8...|[52.0,1.0,4.07664...|	    0|
+|23f18d22-3bd2-488...|[72.0,1.0,11.7857...|	    0|
+|697394ad-3f76-490...|[53.0,1.0,4.53504...|	    0|
+|d1848ddf-2d89-443...|[14.0,1.0,2.38047...|	    2|
+|78b0353a-c989-447...|[11.0,1.0,1.25830...|	    2|
+|db562bf4-3643-48a...|[29.0,1.0,3.50000...|	    2|
++--------------------+--------------------+----------+
+
+>>> clean_output = predictions.drop("features")
+>>> clean_output.write.mode("overwrite") \
+e) \
+    .csv("h...	   .option("header", True) \
+...	.csv("hdfs://localhost:9000/final_output")
+
+bash:lcd: too many arguments
+0;arya_mulay@DARE-TO-DEVIL:C~01;32marya_mulay@DARE-TO-DEVIL00m:01;34m~00m$pCCCCCCCCb1PAUsers\ARYA MULAY\OneDrive\Desktop\projects\big_data_project\Learning Collapse De"C:\Users\ARYA MULAY\OneDrive\Desktop\projects\big_data_project\Learning Collapspython3t"C:\Users\ARYA MULAY\OneDrive\Desktop\projects\big_data_project\Learning Collapse Detection\clickstream_pipeline.pyK
+
+python3: can't open file '/home/arya_mulay/C:UsersARYA': [Errno 2] No such file or directory
+?2004h0;arya_mulay@DARE-TO-DEVIL: ~01;32marya_mulay@DARE-TO-DEVIL00m:01;34m~00m$ exit
+exit4l
+
+Script done on 2026-04-10 17:29:59+00:00 [COMMAND_EXIT_CODE="2"]
